@@ -1,0 +1,88 @@
+sudo
+pwd
+cd
+ls -lrt
+ls -lsh 					to view the files with their sizes
+uname   -r
+who /whoami/ who am i
+touch						creating new empty files
+touch {1..10}.txt			creates 10 files at one shot like 1.txt,....,10.txt
+touch {p..t}{1..5}{a..e}.txt 	creates files at one shot with these combinations like p1a.txt,q2b.txt,....,t5e.txt
+rm -f {p..t}{1..5}{a..e}.txt 	Deletes all the files starting with p/q/r/s/t    	rm -f *{1..7}.txt   
+mkdir						creating new directory
+mv							moving files
+rm							removing files or (rm -rvf) to remove directories
+find (path) -type f -name '*.txt'    (-exec rm {} \;) or -delete also works (-perm 777 ) to see the files with this permission 
+rm -fv !("proc.txt")		removing alll files in the current directory except the "proc.txt" file.
+cp							copying files
+history						history of the commands that previously executed
+curl url					fetch data and post the data over the internet
+apt -get
+df -h						(disk free space) disk space usage on the mounted file system.(-h --> with human readable format	
+du -h (file name)			to know the size of the file (disk usage of a directory or a file) 						
+ifconfig					information about your network interface
+hostname -i 				Retrieves your private IP address.
+nslookup					to obtain information for DNS server (nslookup google.com)
+netstat 					to view the network connections (-a all sockets) (-at all tcp ports)
+netstat -plan (-tunl)		to view the open ports     (ss -tunl)
+scp (filename) jayesh@10.143.90.2:/home/jayesh
+wget
+chmod
+grep
+uptime
+free						memory-related detail in your system.
+top							CPU and memory usage on a per-process basis. ( htop -n1 > file.txt ) to save the output to a file.
+ps -ef
+kill -9 pid					to kill a process by its pid.
+killall -9 (process name)	to kill multiple instances of a process by the name of process.
+sar -r 						System Activity Report  (sar -4 5 5) (sar -F 2 5) 
+gzip						to compress the files
+gunzip 						to uncompress the files
+tar -cvf/-tvf/-xvf			to create an archive/display an archived file/extract file from an archived file
+head / tail					to view first and last couple of lines as per the parameters provided.
+tail -f filename			to view the log files live
+crontab min 	hr		dd 		mm 		dow(day of the week)
+		00-59	00-23	1-31	1-12	0-7
+ping (server)
+diff 						to compare 2 files with options -c & -u (-w to ignore white space )
+cmp 						compare 2 files byte by byte
+stat (file/directory) 		To know the Birth,Change,Modify & Access time of the file.
+ln							to create a hard link of the file.it's more flexible and remain linked even if the original file is removed
+ln -s 						to create a soft link of the file.it's more flexible and remain linked even if the original file is removed
+sudo shutdown -r now (sudo reboot)		to restart the lynux server now (replace now with a specific time in the format hh:mm
+sudo shutdown 				-p/h poweroff 
+sh -x script				in debug mode 
+systemctl					to check all the services.
+awk '{print NR "  " $1 "- " $NF}' aproc.txt     		with line number first field and last field
+D R S T Z 					these are the states of a process. D - UNINTERRUPTABLE_SLEEP,S - INTERRUPTABLE_SLEEP,R - Running, T - Stpopped , Z -  Zombie
+
+systemctl (poweroff,reboot,suspend,hibernate,hybrid-sleep)
+
+sudo systemctl start (service name)
+sudo systemctl stop (service name)
+sudo systemctl status (service name)
+
+
+netstat    port
+debug         sh -x scrpt
+awk
+shutdown
+deadlock in db
+incident vs problem
+autosys
+script
+itil
+backup table
+
+telnet
+ssh
+-------------------DR Activity------------------------------
+live data centre 
+secondary data centre
+
+stop the jobs in the server     crontab
+shutdown the application in any one server 
+
+sudo service (application) status
+
+each 15 min crontab

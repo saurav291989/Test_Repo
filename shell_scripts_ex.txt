@@ -1,0 +1,192 @@
+--------------------installing all req. softwares-----------------------
+#! /bin/bash
+
+echo "Installing of all the software"
+sudo yum -y update
+
+echo "Installing java in your system"
+yum -y remove java
+yum -y install java-1.8.0-openjdk
+
+echo "Installing git in your system"
+yum -y install git
+
+echo "Installing maven in your system"
+yum -y install maven
+
+echo "Installing docker in your system"
+sudo yum -y update
+yum -y install docker
+chkconfig docker on
+
+echo "Installing jenkins in your system"
+wget -o
+rmp --import
+yum -y install jenkins
+chkconfig jenkins on
+usermod -a -G jenins docker
+sudo service jenkins start
+sudo service docker start
+
+------------------------------------------------------------------------
+#! /bin/bash
+echo "enter 1st digit"
+read one
+echo "enter 2nd digit"
+read two
+sum=$(($one + $two))
+sub=$(($one - $two))
+mul=$(($one * $two))
+div=$(($one / $two))
+#echo the sum is "$(($one + $two))"
+echo the sum of the given numbers is $sum
+echo the subtraction of the given numbers is $sub
+echo the multiplication of the given numbers is $mul
+echo the division of the given numbers is $div
+if [ $one -gt $two ]
+then
+echo "$one is greater than $two"
+else
+echo "$two is greater than $one"
+fi
+
+
+#!/bin/bash
+path="/home/mulprojct"
+# Files inside actual_dir has to be moved
+fldr="$path/scrfld"
+find $path -name 'comp.sh' -exec mv {} $fldr \;
+
+
+#!/bin/bash
+path="/home/mulprojct"
+# Files inside actual_dir has to be moved
+fldr="$path/scrfld"
+#find $path -name 'comp.sh' -exec mv {} $fldr \;
+for f in $(find $path -type f -name comp.sh);
+do
+echo $f
+mv $f $fldr
+done
+echo "moving of file is completed"
+
+
+#!/bin/bash
+path="/home/mulprojct"
+# Files inside actual_dir has to be moved
+fldr="$path/scrfld"
+#find $path -name 'comp.sh' -exec mv {} $fldr \;
+for f in $(find $path -type f -name '[cd]*.sh');
+do
+echo $f
+mv $f $fldr
+done
+echo "moving of file is completed"
+
+
+
+#! /bin/bash
+pdr="/home/mulprojct"
+tdr="$pdr/scrfld"
+for f in $(find $pdr -type f -name '[c-f]*.sh');
+do
+echo $f
+mv $f $tdr
+done
+echo "file moved successfully"
+
+
+#! /bin/bash
+echo "Enter the first number"
+read a
+echo "Enter the second number"
+read b
+echo "before swapping" $a $b
+a=$(($a+$b))
+b=$(($a-$b))
+a=$(($a-$b))
+#c=$a
+#a=$b
+#b=$c
+echo "After swapping" $a $b
+
+
+#creating a file if not exists
+#! /bib/bash
+#fl=asd.txt
+#ls abd.txt
+ls | grep $fl
+#echo $?
+if [ $? -eq 0 ]
+#if [ -e abc.txt ]
+#if [ -n "$(find -type f -name 'abc.txt')" ]
+then
+#rm -f a*.txt
+echo "the file exists"
+else
+#touch $fl
+#echo "the file $fl has been created"
+echo "file doesn't exist"
+fi
+
+touch {{a..d},{p..s},{1..4}}.txt
+rm {{a..d}{p..s}{1..4}}.txt
+touch {1..10}.txt
+rm -f *[1-9]*.txt
+
+#creating multiple files at one go
+
+#! /bin/sh
+
+for i in `seq 1 10`;do
+touch $i.txt
+#echo "Hello" > $i.txt
+done
+---------------OddEven-----------------
+#! /bin/bash
+f="false"
+t="true"
+for i in `seq 1 10`;do
+if [ $(($i % 2)) -eq 0 ]
+then
+echo "$i is $t"
+else
+echo "$i is $f"
+fi
+done
+
+#! /bin/bash
+echo "enter a number"
+read a
+if [ $(($a % 2)) -eq 0 ]
+then
+echo "$a is even"
+else
+echo "$a is odd"
+fi
+
+====================printing star====================
+
+#! /bin/bash
+#
+for i in `seq 1 10`;
+do
+        for j in `seq 1 $i`;
+        do
+                echo -n "*"
+        done
+        echo
+done
+
+==================Fibonacci series==================
+#! /bin/bash
+
+a=0
+b=1
+echo "The Fibonacci series is :"
+for i in `seq 0 10`;do
+        echo $a
+        sm=$(($a+$b))
+        a=$b
+        b=$sm
+done
