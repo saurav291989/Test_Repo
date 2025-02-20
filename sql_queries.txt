@@ -1,0 +1,182 @@
+select e.empno,e1.mgr,e1.ename manager from emp e,emp e1 where e.mgr=e1.empno;
+select * from emp where sal > (select avg (sal) from emp);
+select * from emp where deptno in (select deptno from dept where dname='sales');
+select * from emp where deptno =(select deptno from emp where ename ='SMITH');
+select * from (select * from emp order by sal desc) where rownum <=5 minus select * from (select * from emp order by sal desc) where rownum <=4;
+
+select * from (select ename,empno,sal,dense_rank() over (order by sal desc) r from emp) where r =5;
+select * from (select ename ,empno,sal,dense_rank () over (partition by deptno order by sal)r from emp) where 4 =3;
+select * from (select rownum r,ename,sal from (select * from emp order by sal desc)) where r = 3; 
+
+select rownum r,e.* from emp e where r=(select count(*) from emp);      last record of the table
+select * from emp where mod (rownum/2)=0;        even records of the table
+select empno,count(*) from emp group by empno having count(*) > 1;
+
+delete from emp where rowid not in(select min (rowid) from emp group by empno);
+
+select s.roll_no,s.name,s.address,s.phne,s.age,sc.course_id from 
+student s join studentcourse sc on s.roll_no=sc.roll_no;
+
+
+
+
+
+select * from HR.EMPLOYEES;
+select * from HR.DEPARTMENTS;
+SELECT MAX(salary) from HR.EMPLOYEES;
+select salary,count(*) from HR.EMPLOYEES
+group by salary having count(*) > 1;
+
+select salary from HR.EMPLOYEES
+order by salary desc;
+
+select * from HR.EMPLOYEES where salary in ( 
+select salary from HR.EMPLOYEES
+group by salary having count(*) > 1) order by salary desc;
+
+select rownum,salary from HR.EMPLOYEES
+where rownum=1;
+--order by salary desc ;
+select * from
+(select salary from HR.EMPLOYEES
+where rownum<=4 order by salary desc)
+MINUS
+select * from
+(select salary from HR.EMPLOYEES
+where rownum<=3 order by salary desc);
+
+-----------------------------nth Highest Salary-----------------------------
+select * from (
+select * from HR.EMPLOYEES order by salary desc) where ROWNUM <=5
+minus
+select * from (
+select * from HR.EMPLOYEES order by salary desc) where ROWNUM <=4;
+
+select e.* from HR.EMPLOYEES e where 5 =(
+select count(*) from HR.EMPLOYEES e1 where e1.salary >= e.salary);
+
+select * from
+(select e.*,dense_rank() over (order by salary desc) rnk 
+from HR.EMPLOYEES e) where rnk =4;
+--------------------------//*Last record*//	----------------------------			
+select * from(
+select e.*,row_number() over (order by employee_id DESC) rwn from
+HR.EMPLOYEES e) where rwn =1;
+-----------------------------full join-----------------------------
+SELECT E.JOB_ID,E.first_name,E.last_name,D.DEPARTMENT_ID,
+D.DEPARTMENT_NAME from HR.EMPLOYEES E 
+full join HR.DEPARTMENTS D
+on E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+-----------------------------self join-------------------
+select e.employee_id ,e.first_name employee,e.manager_id,
+f.first_name manager from HR.EMPLOYEES e,HR.EMPLOYEES f
+where e.manager_id = f.employee_id;
+-----------------Merge-----------------------------------
+merge into employees as target
+using new_employees as source
+on source.employee_id=target.employee_id
+when matched then
+update set target.salary=source.salary
+when not matched then
+insert (employee_id,name,salary)
+values(source.employee_id,source.name,source.salary);
+---------------------------------------------------------
+JOB_ID
+SELECT * FROM HR.JOBS;
+
+SELECT E.JOB_ID,E.first_name,E.last_name,J.job_title 
+from HR.EMPLOYEES E ,HR.JOBS J
+where E.JOB_ID=J.JOB_ID;
+
+SELECT E.JOB_ID,E.first_name,E.last_name,J.job_title 
+from HR.EMPLOYEES E join HR.JOBS J
+on E.JOB_ID=J.JOB_ID;
+
+SELECT E.JOB_ID,E.first_name,E.last_name,J.job_title 
+from HR.EMPLOYEES E full outer join HR.JOBS J
+on E.JOB_ID=J.JOB_ID;
+
+select * from HR.REGIONS;
+
+select count(*) from HR.EMPLOYEES;
+select * from HR.EMPLOYEES where id=
+(select max(id) from HR.EMPLOYEES);
+
+SELECT * FROM TableName WHERE id=
+(SELECT max(id) FROM TableName);
+
+select * from HR.EMPLOYEES where rownum r =
+(select count(*) from HR.EMPLOYEES);
+
+select * from HR.EMPLOYEES
+where ROWNUM <=(select count(*)-1 from HR.EMPLOYEES);
+
+SELECT ROWID,employee_id from HR.EMPLOYEES;
+
+SELECT * FROM HR.EMPLOYEES order by employee_id DESC;
+
+select * from(
+select e.*,row_number() over (order by employee_id DESC) rwn from
+HR.EMPLOYEES e) where rwn =1;
+
+select * from HR.EMPLOYEES where ROWNUM=1;
+
+select * from HR.EMPLOYEES where ROWNUM<=5;
+select * from HR.JOBS;
+
+select e.job_id,e.first_name,e.department_id,j.job_title,j.max_salary from HR.EMPLOYEES e join HR.JOBS j
+on e.job_id = j.job_id;
+
+select e.job_id,e.first_name,e.department_id,j.job_title,
+j.max_salary from HR.EMPLOYEES e full join HR.JOBS j
+on e.job_id = j.job_id;
+
+SELECT E.JOB_ID,E.first_name,E.last_name,D.DEPARTMENT_ID,
+D.DEPARTMENT_NAME from HR.EMPLOYEES E
+join HR.DEPARTMENTS D
+on E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+select * from HR.REGIONS;
+select * from HR.COUNTRIES;
+
+select 
+r.region_id,r.region_name,c.country_id,c.country_name
+from HR.REGIONS r join HR.COUNTRIES c
+on r.region_id=c.region_id;
+
+select * from(
+select row_number() over (order by employee_id desc) rnum from HR.EMPLOYEES)
+where rnum=2;
+
+select c.country_name from  
+HR.LOCATIONS l,HR.COUNTRIES C where
+l.COUNTRY_ID=c.COUNTRY_ID
+
+select e.* from HR.EMPLOYEES e join 
+(select c.country_name from HR.COUNTRIES c where
+c.COUNTRY_ID in (
+select l.COUNTRY_ID from
+HR.DEPARTMENTS d,HR.LOCATIONS l where
+d.LOCATION_ID=l.LOCATION_ID))
+
+
+
+select e.* from HR.EMPLOYEES e join HR.DEPARTMENTS d
+on e.department_id = d.department_id
+join HR.LOCATIONS l
+on d.LOCATION_ID=l.LOCATION_ID
+
+select l.COUNTRY_ID from
+,HR.LOCATIONS l where
+d.LOCATION_ID=l.LOCATION_ID))
+
+------------------------final-------------------------------
+
+select e.*,l.CITY,c.country_name from HR.EMPLOYEES e 
+join HR.DEPARTMENTS d
+on e.department_id = d.department_id
+join HR.LOCATIONS l
+on d.LOCATION_ID=l.LOCATION_ID
+join HR.COUNTRIES c
+on l.COUNTRY_ID=c.COUNTRY_ID;
