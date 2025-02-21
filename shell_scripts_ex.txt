@@ -38,11 +38,14 @@ sum=$(($one + $two))
 sub=$(($one - $two))
 mul=$(($one * $two))
 div=$(($one / $two))
+rem=$(($one % $two))
 #echo the sum is "$(($one + $two))"
 echo the sum of the given numbers is $sum
 echo the subtraction of the given numbers is $sub
 echo the multiplication of the given numbers is $mul
-echo the division of the given numbers is $div
+#echo the division of the given numbers is $div
+#echo the remainder of the given numbers is $rem
+echo dividend $one by divisor $two resulting Quotient $div and remainder $rem
 if [ $one -gt $two ]
 then
 echo "$one is greater than $two"
@@ -110,24 +113,24 @@ a=$(($a-$b))
 #b=$c
 echo "After swapping" $a $b
 
-
 #creating a file if not exists
 #! /bib/bash
 #fl=asd.txt
 #ls abd.txt
-ls | grep $fl
+#ls | grep $fl
 #echo $?
-if [ $? -eq 0 ]
+#if [ $? -eq 0 ]
 #if [ -e abc.txt ]
-#if [ -n "$(find -type f -name 'abc.txt')" ]
+if [ -n "$(find -type f -name 'abc.txt')" ]
 then
 #rm -f a*.txt
 echo "the file exists"
 else
-#touch $fl
-#echo "the file $fl has been created"
-echo "file doesn't exist"
+touch /home/myfld/xtra/abc.txt
+echo "the file abc.txt has been created"
+#echo "file doesn't exist"
 fi
+
 
 touch {{a..d},{p..s},{1..4}}.txt
 rm {{a..d}{p..s}{1..4}}.txt
