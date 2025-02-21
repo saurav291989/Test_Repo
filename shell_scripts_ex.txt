@@ -30,10 +30,12 @@ sudo service docker start
 
 ------------------------------------------------------------------------
 #! /bin/bash
-echo "enter 1st digit"
+echo "enter 1st digit other than zero"
 read one
-echo "enter 2nd digit"
+echo "enter 2nd digit other than zero"
 read two
+if [ $one -ge $two ]
+then
 sum=$(($one + $two))
 sub=$(($one - $two))
 mul=$(($one * $two))
@@ -45,12 +47,20 @@ echo the subtraction of the given numbers is $sub
 echo the multiplication of the given numbers is $mul
 #echo the division of the given numbers is $div
 #echo the remainder of the given numbers is $rem
-echo dividend $one by divisor $two resulting Quotient $div and remainder $rem
+echo dividend $one by  divisor $two resulting Quotient $div and remainder $rem
+if [ $one -ne $two ]
+then
 if [ $one -gt $two ]
 then
 echo "$one is greater than $two"
 else
 echo "$two is greater than $one"
+fi
+else
+echo "both the numbers are same"
+fi
+else
+echo "Please enter the smaller number than the first number"
 fi
 
 
