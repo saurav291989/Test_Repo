@@ -76,6 +76,7 @@ where e.manager_id = f.employee_id;
 select f.first_name manager,count(*) employees from HR.EMPLOYEES e
 join HR.EMPLOYEES f on e.MANAGER_ID=f.EMPLOYEE_ID
 group by f.first_name;
+
 -----------------Merge-----------------------------------
 merge into employees as target
 using new_employees as source
