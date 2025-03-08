@@ -86,3 +86,7 @@ shutdown the application in any one server
 sudo service (application) status
 
 each 15 min crontab
+
+[ -d "/home/jimun" ] || sudo mkdir -p "/home/jimun"
+[ -d "/home/jimun" ] && echo "Directory exists" || { mkdir -p "/home/jimun" && echo "Directory created"; }
+[ -f "/home/saurav/xtra/saurav.txt" ] && echo "File exists" || { touch "/home/saurav/xtra/saurav.txt" && echo "File created";
