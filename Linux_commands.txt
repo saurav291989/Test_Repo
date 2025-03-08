@@ -59,8 +59,8 @@ D R S T Z 					these are the states of a process. D - UNINTERRUPTABLE_SLEEP,S - 
 systemctl (poweroff,reboot,suspend,hibernate,hybrid-sleep)
 
 sudo systemctl start (service name)
-sudo systemctl stop (service name)
-sudo systemctl status (service name)
+systemctl stop (service name)
+systemctl status (service name)
 
 
 netstat    port
